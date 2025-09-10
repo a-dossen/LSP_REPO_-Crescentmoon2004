@@ -1,0 +1,9 @@
+# Java / macOS / build
+out/
+*.class
+.DS_Store
+
+# Never commit local JDKs or vendor SDKs
+*.jdk/
+Oracle_JDK-24.jdk/
+src/**/Oracle_JDK-24.jdk/
