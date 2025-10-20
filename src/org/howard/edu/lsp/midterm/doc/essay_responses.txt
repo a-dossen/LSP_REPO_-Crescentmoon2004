@@ -1,7 +1,63 @@
 # Midterm Exam Essay Responses
 
 ## Essay Question 1
-[Your response here]
+
+# Part A: 
+According to Riel's heuristics, a well-designed class should have a high cohesion. Meaning:
+1. All methods and attributes within the class should be working together to provied a single and well-defined responsibility.
+2. Each method should be using some part of the class attributes.
+3. The class should represent a single logical concept or entity within the system.
+
+High cohesion is preferable because it:
+- Simplifies maintenance and debugging
+- Reduces complexity
+- Makes the class more reusable and flexible
+- Follows the Single Responsibility Principle in OO design
+
+# Part B:
+The StudentPortalHelper class demonstrates low cohesion for the following resonings:
+1. Multiple Unrelated responsibilities
+- GPA calculation (academic logic)
+- File I/O (data persistence)
+- Email formatting (communication)
+- UI formatting (presentation)
+- Payment processing (financial)
+- Security (password validation)
+- Caching (infrastructure)
+
+2. Violation of Riel's heuristics
+- The class acts as a "god class" containing multiple functionalities that are Unrelated
+- Methods don't share common attributes or state 
+- Most methods are static, suggesting utility behavior instead of a meaningful object-oriented design
+
+# Proposed Refactoring Approach 
+The class should be split into several cohesive classes, each with a single responsibility:
+
+```
+org.howard.edu.lsp.studentPortal
+├── academic/
+│   └── GPACalculator.java
+├── io/
+│   └── RosterExporter.java
+├── communication/
+│   └── EmailFormatter.java
+├── ui/
+│   └── DateFormatter.java
+├── payment/
+│   └── TuitionProcessor.java
+├── security/
+│   └── PasswordValidator.java
+└── infrastructure/
+    └── CacheService.java
+```
+
+Each new class would focus on one specific aspect of the system, improving:
+- Better Maintainability and Readibility
+- Improved Testability
+- Reusability
+- Code organization
+
+This refactoring aligns with both Riel's heuristics and the Single Responsibility Principle of SOLID design principles.
 
 ## Essay Question 2
 [Your response here]
