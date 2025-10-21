@@ -60,8 +60,81 @@ Each new class would focus on one specific aspect of the system, improving:
 This refactoring aligns with both Riel's heuristics and the Single Responsibility Principle of SOLID design principles.
 
 ## Essay Question 2
-[Your response here]
 
-## References
-1. [List any websites or resources used]
-2. [Include full AI conversation transcripts if used]
+#Part A:
+
+The current structure does not adequately support dynamic trim level changes for multiple reasons:
+1. Inheritence Limitation
+- The Base, Sports, and Luxury classes inherit from Car.
+- In Java, inheritence is fixed at compile time.
+- This means a car object's type cannot be changed at runtime.
+- Example: A Base car cannot be converted into a Sports car without creating a new object.
+
+2. Object Identity problem
+- Changing the trim level would require creating a new object.
+- This breaks object continuity because all existing refrences would still point to the old car instance.
+- Any existing state would still be lost during transformation.
+
+# Part B
+
+## Question 4 Rationale
+
+Why Device is abstract:
+Device is defined as an abstract class because it provides common fields and methods for all devices (like id, location, heartbeat, and connection status) but leaves getStatus() abstract. This allows each concrete device to implement its own status format while sharing the common behavior.
+
+Role of Networked and BatteryPowered interfaces:
+The Networked and BatteryPowered interfaces allow concrete devices to adopt specific behaviors independently of the base class. For example, DoorLock and Camera are battery-powered, while Thermostat is not, but all can connect to a network.
+
+Multiple inheritance in Java?:
+This design is not true multiple inheritance because Java does not allow extending more than one class. Instead, it uses interfaces to provide additional behavior, which is Java's way to achieve multiple inheritance-like flexibility safely.
+
+The solution is to use the Strategy Pattern with composition instead of inheritence:
+
+```java
+// Trim level becomes an interface
+interface TrimLevel {
+    String getTrimLevel();
+}
+
+// Concrete implementations of trim levels
+class BaseTrim implements TrimLevel {
+    public String getTrimLevel() { return "Base"; }
+}
+
+class SportsTrim implements TrimLevel {
+    public String getTrimLevel() { return "Sports"; }
+}
+
+class LuxuryTrim implements TrimLevel {
+    public String getTrimLevel() { return "Luxury"; }
+}
+
+// Modified Car class using composition
+class Car {
+    private TrimLevel trimLevel;
+    private Engine engine;
+    
+    // Method to change trim level dynamically
+    public void setTrimLevel(TrimLevel newTrim) {
+        this.trimLevel = newTrim;
+    }
+    
+    public String getTrimLevel() {
+        return trimLevel.getTrimLevel();
+    }
+}
+```
+
+Benefits of this approach:
+Dynamic Trim Changes: Trim level can be updated at runtime without creating a new object.
+Object Continuity: The same Car instance maintains its identity throughout its lifecycle.
+State Preservation: Existing properties such as the engine remain unchanged.
+Flexible Design: New trim levels can be added without modifying the Car class.
+Clean and Maintainable: Follows the Open/Closed Principle of SOLID design.
+
+This solution allows statements like:
+```java
+Car myCar = new Car(new BaseTrim(), new ElectricEngine());
+// Later in the manufacturing process...
+myCar.setTrimLevel(new SportsTrim());  // Dynamically change trim
+```
