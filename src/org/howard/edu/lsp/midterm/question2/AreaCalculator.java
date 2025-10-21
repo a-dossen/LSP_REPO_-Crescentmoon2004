@@ -2,6 +2,13 @@ package org.howard.edu.lsp.midterm.question2;
 
 /**
  * A utility class for calculating areas of different geometric shapes.
+ * 
+ * Brief Rationale for Method Overloading vs Different Method Names:
+ * Method overloading is preferred in this case because:
+ * 1. It provides a cleaner, more intuitive API where all area calculations use the same method name
+ * 2. The method name 'area' clearly represents what each method does, regardless of shape
+ * 3. Using different method names (rectangleArea, circleArea, etc.) would be more verbose and 
+ *    violate the DRY (Don't Repeat Yourself) principle
  */
 public class AreaCalculator {
     
