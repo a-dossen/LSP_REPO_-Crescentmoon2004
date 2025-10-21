@@ -1,6 +1,6 @@
 # Midterm Exam Essay Responses
 
-## Essay Question 1
+## Question 1 Essay
 
 # Part A: 
 According to Riel's heuristics, a well-designed class should have a high cohesion. Meaning:
@@ -59,7 +59,7 @@ Each new class would focus on one specific aspect of the system, improving:
 
 This refactoring aligns with both Riel's heuristics and the Single Responsibility Principle of SOLID design principles.
 
-## Essay Question 2
+## Question 3 Essay
 
 #Part A:
 
@@ -76,17 +76,6 @@ The current structure does not adequately support dynamic trim level changes for
 - Any existing state would still be lost during transformation.
 
 # Part B
-
-## Question 4 Rationale
-
-Why Device is abstract:
-Device is defined as an abstract class because it provides common fields and methods for all devices (like id, location, heartbeat, and connection status) but leaves getStatus() abstract. This allows each concrete device to implement its own status format while sharing the common behavior.
-
-Role of Networked and BatteryPowered interfaces:
-The Networked and BatteryPowered interfaces allow concrete devices to adopt specific behaviors independently of the base class. For example, DoorLock and Camera are battery-powered, while Thermostat is not, but all can connect to a network.
-
-Multiple inheritance in Java?:
-This design is not true multiple inheritance because Java does not allow extending more than one class. Instead, it uses interfaces to provide additional behavior, which is Java's way to achieve multiple inheritance-like flexibility safely.
 
 The solution is to use the Strategy Pattern with composition instead of inheritence:
 
@@ -138,3 +127,21 @@ Car myCar = new Car(new BaseTrim(), new ElectricEngine());
 // Later in the manufacturing process...
 myCar.setTrimLevel(new SportsTrim());  // Dynamically change trim
 ```
+
+## Question 4 Rationale
+
+Why Device is abstract:
+Device is defined as an abstract class because it provides common fields and methods for all devices (like id, location, heartbeat, and connection status) but leaves getStatus() abstract. This allows each concrete device to implement its own status format while sharing the common behavior.
+
+Role of Networked and BatteryPowered interfaces:
+The Networked and BatteryPowered interfaces allow concrete devices to adopt specific behaviors independently of the base class. For example, DoorLock and Camera are battery-powered, while Thermostat is not, but all can connect to a network.
+
+Multiple inheritance in Java?:
+This design is not true multiple inheritance because Java does not allow extending more than one class. Instead, it uses interfaces to provide additional behavior, which is Java's way to achieve multiple inheritance-like flexibility safely.
+
+## Question 5
+Throughout this course, I've mostly used ChatGPT as a learning aid. This AI tool has been helping me work through tricky concepts and suggesting various ways to approach problems. For instance, When tackling OO designs, AI helped me to visualize different class structures and weigh the trade-offs between inheritance and composition.
+At the Same time, I've noticed it's limitations. Sometimes the suggestions are overly complex and don't meet the assignment requirements. This has taught me to critically evaluate AI advice instead of blindly accepting it and pressing submit. 
+
+Looking Ahead, I see AI become an integral part of my programming workflow but in a balanced way. I don;t plan on relying it to code for me but rather using it to explore design patterns, suggest optimizations, and clarify concepts that I may not be able to grasp. In professional settings, I expect AI tools will help me work more efficiently, but still will be of importance
+to maintain a foundational understanding. The key is to use AI when enhancing my skills but not to replace my personal critical thinking and problem solving skills.
