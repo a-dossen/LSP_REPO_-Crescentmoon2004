@@ -2,17 +2,18 @@ package org.howard.edu.lsp.assignment3;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Objects;
 
 /**
  * Represents a product with its attributes and transformation logic.
  * This class encapsulates both the data and the operations that can be performed on a product.
  */
 public class Product {
-    private int id;
+    private final int id;
     private String name;
     private BigDecimal price;
     private String category;
-    private String originalCategory;
+    private final String originalCategory;
     private String priceRange;
 
     /**
@@ -99,5 +100,22 @@ public class Product {
             category == null ? "" : category,
             priceRange == null ? "" : priceRange
         );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id &&
+                Objects.equals(name, product.name) &&
+                Objects.equals(price, product.price) &&
+                Objects.equals(category, product.category) &&
+                Objects.equals(priceRange, product.priceRange);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, category, priceRange);
     }
 }
