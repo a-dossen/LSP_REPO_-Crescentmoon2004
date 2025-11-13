@@ -8,7 +8,7 @@ import java.util.List;
  * Supports standard set operations including union, intersection, difference, and complement.
  */
 public class IntegerSet {
-    private List<Integer> set = new ArrayList<Integer>();
+    private final List<Integer> set = new ArrayList<>();
 
     /**
      * Clears the internal representation of the set by removing all elements.
@@ -175,7 +175,7 @@ public class IntegerSet {
             return;
         }
         
-        List<Integer> result = new ArrayList<Integer>();
+        List<Integer> result = new ArrayList<>();
         for (int item : other.set) {
             if (!this.contains(item)) {
                 result.add(item);
@@ -204,5 +204,10 @@ public class IntegerSet {
     @Override
     public String toString() {
         return set.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return set.hashCode();
     }
 }
